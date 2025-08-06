@@ -18,7 +18,7 @@ export default function Home() {
     return (
         <div className="container">
             <h1>User Listing</h1>
-                <table>
+                <table className='table'>
                     <thead>
                         <tr>
                             <th>Sno.</th>
@@ -30,7 +30,7 @@ export default function Home() {
                     <tbody>
                     {users.map((user, index) => (
                             <tr key={user.id} >
-                                <td>{index}</td>
+                                <td>{++index}</td>
                                 <td>{user.name}</td>
                                 <td>{user.email}</td>
                                 <td>edit</td>
