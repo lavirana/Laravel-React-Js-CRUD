@@ -1,2 +1,8 @@
-# Laravel-React-Js-CRUD
-A simple full-stack CRUD application using React.js as the frontend and Laravel as the backend. This project demonstrates how to perform Create, Read, Update, and Delete operations with API integration between React and Laravel.
+# React-Laravel CRUD Project
+
+A full-stack CRUD application using:
+
+- **React JS** (in `/frontend`) for the frontend
+- **Laravel** (in `/backend`) for the backend REST API
+
+This project demonstrates basic Create, Read, Update, and Delete operations with proper separation of concerns between frontend and backend.
