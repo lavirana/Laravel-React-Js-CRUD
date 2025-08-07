@@ -12,7 +12,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        return response()->json(User::get());
+        return response()->json(User::orderBy('id', 'desc')->get());
     }
 
     /**
@@ -28,7 +28,12 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        User::create([
+            'name'=> $request->name,
+            'email'=> $request->email,
+            'password'=> bcrypt($request->password),
+        ]);
+        return response()->json(['message' => 'User created successfully'], 201);
     }
 
     /**
@@ -44,7 +49,7 @@ class UserController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        return response()->json(User::findOrFail($id));
     }
 
     /**
@@ -52,7 +57,12 @@ class UserController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $user = User::whereId($id)->first();
+        $user->update([
+            'name' => $request->name,
+            'email' => $request->email,
+        ]);
+        return response()->json(['message' => 'User updated successfully'], 200);
     }
 
     /**
@@ -60,6 +70,11 @@ class UserController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $user = User::whereId($id)->first();
+        if ($user) {
+            $user->delete();
+            return response()->json(['message' => 'User deleted successfully'], 200);
+        }
+        return response()->json(['message' => 'User not found'], 404);
     }
 }
